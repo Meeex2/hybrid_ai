@@ -8,19 +8,19 @@ This report addresses Poisson problem in 2D using machine learning (ML) and hybr
 
 The project involves solving one of two physical problems—Poisson or thermal—using ML techniques. We focus on the **Poisson problem** in 2D, defined as:
 
-\[
+$$
 -\left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}\right) = f(x, y) \text{ in } \Omega
-\]
+$$
 
-- **Domain**: \(\Omega = [0,1] \times [0,1]\) (unit square).
+- **Domain**: $\Omega = [0,1] \times [0,1]$ (unit square).
 - **Boundary Conditions**:
-  \[
+  $$
   u(x=0, y)=0, \quad u(x=1, y)=0, \quad u(y=0, x)=0, \quad u(y=1, x)=0
-  \]
+  $$
 - **Source Term**: 
-  \[
+  $$
   f(x, y) = x \sin(a \pi y) + y \sin(b \pi x)
-  \]
+  $$
   where \(a, b \in [0,1]\) are parameters varied across simulations.
 - **Geometry**: Unit square with a uniform grid (element quad), 50x50 grid yielding 2500 nodes (exceeding the minimum 2000 nodes).
 - **Variability**: The source term \(f(x, y)\) varies with parameters \(a\) and \(b\), sampled uniformly from \([0,1]\).
@@ -43,9 +43,9 @@ We solve the Poisson equation on a 50x50 grid (\(N=50\)), resulting in 48x48=230
 
 - **Method**: Finite difference method, as recommended.
 - **Scheme**: Five-point stencil for the Laplacian, specified as:
-  \[
+  $$
   -\Delta u \approx \frac{-u_{i-1,j} - u_{i+1,j} - u_{i,j-1} - u_{i,j+1} + 4u_{i,j}}{h^2}
-  \]
+  $$
   where \(h = 1/(N-1) = 1/49\).
 - **Grid**: Uniform, with \(h = 1/49\), totaling 2500 nodes.
 - **Laplacian Matrix**: Constructed using the Kronecker product of 1D Laplacians, forming a 2304x2304 sparse matrix.
@@ -67,9 +67,9 @@ We apply three distinct methods to predict \(u(x, y)\) from \((a, b, x, y)\):
 
 1. **Polynomial Regression**:
    - **Typology**: Classic "one-shot" regression, as specified:
-     \[
+     $$
      u^*(x, y) = \text{Model}(a, b)
-     \]
+     $$
    - **Nature**: Linear regression with polynomial features (degree=3).
    - **Preprocessing**: Transform inputs \((a, b, x, y)\) into polynomial features.
    - **Justification A Priori**: Simple baseline, effective for smooth functions like PDE solutions, computationally efficient.
@@ -83,9 +83,9 @@ We apply three distinct methods to predict \(u(x, y)\) from \((a, b, x, y)\):
 3. **Hybrid AI (Physics-Informed Neural Network with Numerical Correction)**:
    - **Typology**: Hybrid approach combining data-driven learning with physics enforcement.
    - **Nature**: Same architecture as the NN, but with a custom loss incorporating the PDE:
-     \[
+     $$
      -\left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}\right) = f(x, y)
-     \]
+     $$
      Followed by numerical correction to enforce boundary conditions exactly.
    - **Preprocessing**: Same as NN, with additional PDE loss computation.
    - **Justification A Priori**: Enforces physical consistency, potentially improving PDE residue while maintaining good MSE. The numerical correction ensures boundary conditions are met exactly, blending ML with traditional methods.
@@ -155,9 +155,9 @@ The PINN’s results will be computed in the notebook, but we expect:
 
 - **Data Error (MSE)**: Computed for all methods.
 - **Physical Criterion (PDE Residue)**:
-  \[
+  $$
   \text{Residue} = \left| -\Delta u_{\text{pred}} - f(x, y) \right|^2
-  \]
+  $$
   Calculated via finite differences for one test simulation.
 
 ### 5.5 Error Variability
