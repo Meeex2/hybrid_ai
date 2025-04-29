@@ -203,4 +203,4 @@ The PINN’s results will be computed in the notebook, but we expect:
 
 ## 7. Code
 
-The full code is provided in the notebook and can be run using the deafault colabe environment.
+The full code is provided in the notebook and can be run using the deafault Google colab environment.
