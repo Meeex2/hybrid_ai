@@ -1,6 +1,6 @@
 # Poisson Problem Machine Learning and Hybrid AI Report
 
-This report addresses the project requirements outlined in the document "TP Hybrid.pdf" for solving the Poisson problem in 2D using machine learning (ML) and hybrid AI methods. We generate data, apply three distinct methods (Polynomial Regression, Neural Network, and Physics-Informed Neural Network with numerical correction), evaluate them "justly," and provide a conclusion with constructive critique and future perspectives. All equations and steps are included as per the requirements.
+This report addresses Poisson problem in 2D using machine learning (ML) and hybrid AI methods. We generate data, apply three distinct methods (Polynomial Regression, Neural Network, and Physics-Informed Neural Network with numerical correction), evaluate them "justly," and provide a conclusion with constructive critique and future perspectives. All equations and steps are included as per the requirements.
 
 ---
 
@@ -203,4 +203,4 @@ The PINN’s results will be computed in the notebook, but we expect:
 
 ## 7. Code
 
-The full code is provided in the notebook below, ensuring reproducibility as required.
+The full code is provided in the notebook and can be run using the deafault colabe environment.
